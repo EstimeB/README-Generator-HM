@@ -75,8 +75,7 @@ function init() {
 For further information on the license please visit (https://snyk.io/learn/open-source-licenses/)\r\n
 ### Contributing \r\n ${data.contributing} \r\n
 ### Tests \r\n ${data.tests} \r\n
-### Questions \r\n Any questions please email me at ${data.email} \r\n or visit me at 
-[Github Profile](https://github.com/${data.github})}
+### Questions \r\n Any questions please email me at ${data.email} \r\n or visit my [Github Profile](https://github.com/${data.github})
             `;
 
             fs.writeFile('README.md', filename, (err) =>
