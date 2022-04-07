@@ -16,11 +16,6 @@ function init() {
             },
             {
                 type: 'input',
-                name: 'tableOfContents',
-                message: 'Table of Contents?',
-            },
-            {
-                type: 'input',
                 name: 'installation',
                 message: 'Installation?',
             },
@@ -30,7 +25,7 @@ function init() {
                 message: 'Usage?',
             },
             {
-                type: 'checkbox',
+                type: 'list',
                 name: 'license',
                 message: 'Select a license',
                 choices: ['Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'BSD 2-Clause "Simplified" License', 'BSD 3-Clause "New" or "Revised" License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'GNU Affero General Public License v3.0', 'GNU General Public License v2.0', 'GNU Lesser General Public License v2.1', 'Mozilla Public License 2.0', 'The Unlicense'],
@@ -46,17 +41,16 @@ function init() {
                 message: 'Test instructions?',
             },
             {
-                type: 'list',
-                name: 'questions',
-                message: 'Contact information and instruction of how to be reached?',
-                choices: {
-                    email: {
-                        type: 'input',
-                    },
-                    github: {
-                        type: 'input',
-                    },
-                }
+                type: 'input',
+                name:'email',
+                message: 'Email?',
+              
+                    
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'GitHud Username?',
             },
         ])
         .then((data) => {
@@ -64,14 +58,25 @@ function init() {
             const filename =
                 `
 # ${data.title} \r\n
-## Description \r\n ${data.description} \r\n
-## Table of Contents \r\n ${data.tableOfContents} \r\n
-## Installation \r\n ${data.installation} \r\n
-## Usage \r\n ${data.usage} \r\n
-## License \r\n ${data.license} \r\n
-## Contributing \r\n ${data.contributing} \r\n
-## Tests \r\n ${data.tests} \r\n
-## Questions \r\n ${data.questions} \r\n
+## Table Of Contents
+* [Installation](#installation)
+* [Description](#description)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+
+### Description \r\n ${data.description} \r\n
+### Installation \r\n ${data.installation} \r\n
+### Usage \r\n ${data.usage} \r\n
+### License \r\n ${data.license} 
+![License](https://img.shields.io/badge/license-${data.license}-blue.svg) \r\n
+For further information on the license please visit (https://snyk.io/learn/open-source-licenses/)\r\n
+### Contributing \r\n ${data.contributing} \r\n
+### Tests \r\n ${data.tests} \r\n
+### Questions \r\n Any questions please email me at ${data.email} \r\n or visit me at 
+[Github Profile](https://github.com/${data.github})}
             `;
 
             fs.writeFile('README.md', filename, (err) =>
